@@ -1,0 +1,32 @@
+ids of divs :
+div - titleSection h1 - title span - productTitle
+div - bylineInfo_feature_div > div > a
+div - averageCustomerReviews ,span - acrPopover title attribute
+div - averageCustomerReviews > span > a > span - acrCustomerReviewText
+org pric = div - price > table > tbody > tr > 2nd td> span
+new price = div - price > table > tbody > 2nd tr > 2nd td > span
+div - ivLargeImage > image
+
+ids of snapdeal
+
+Name : div c=pdp-elec-topcenter-inner
+175.110.107.26	49145
+187.111.160.29	40098
+194.181.82.190	35447
+181.112.42.38	38264
+103.245.188.86	54385
+202.169.37.126	31333
+85.222.191.222	36337
+95.65.73.200	49881
+85.175.226.106	41175
+117.206.83.26	41960
+181.129.133.74	56827
+110.232.76.94	54180
+113.160.218.14	50670
+190.216.224.39	47160
+200.24.240.187	35414
+200.142.120.90	56579
+103.87.236.46	41183
+177.125.20.35	40744
+95.31.245.50	40816
+190.128.26.98	44943
