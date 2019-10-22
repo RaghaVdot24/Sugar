@@ -47,6 +47,9 @@ public class Brand {
 	public Brand(String brand_name) {
 		this.brand_name = brand_name;
 	}
+
+	public Brand() {
+	}
 	
 	
 	

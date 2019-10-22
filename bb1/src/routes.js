@@ -1,18 +1,18 @@
 import React, {Component}from 'react';
 
 
-import Dashboard from "views/Dashboard.jsx";
-import Icons from "views/Icons.jsx";
-import Map from "views/Map.jsx";
-import Notifications from "views/Notifications.jsx";
-import Rtl from "views/Rtl.jsx";
-import TableList from "views/TableList.jsx";
-import Typography from "views/Typography.jsx";
-import UserProfile from "views/UserProfile.jsx";
-import FirstPagesSignUp from 'ProjectPages/pages/FirstPagesSignUp';
-import FirstPagesSignIn from 'ProjectPages/pages/FirstPagesSignIn';
-import DealsoftheDay from 'ProjectPages/pages/DealsoftheDay';
-import Dealsoftheday from 'ProjectPages/pages/DealsoftheDay';
+import Dashboard from "./views/Dashboard.jsx";
+import Icons from "./views/Icons.jsx";
+import Map from "./views/Map.jsx";
+import Notifications from "./views/Notifications.jsx";
+import Rtl from "./views/Rtl.jsx";
+import TableList from "./views/TableList.jsx";
+import Typography from "./views/Typography.jsx";
+import UserProfile from "./views/UserProfile.jsx";
+import FirstPagesSignUp from './ProjectPages/pages/FirstPagesSignUp';
+import FirstPagesSignIn from './ProjectPages/pages/FirstPagesSignIn';
+import DealsoftheDay from './ProjectPages/pages/DealsoftheDay';
+import Dealsoftheday from './ProjectPages/pages/DealsoftheDay';
 
 import { Route } from 'react-router-dom'
 // import { getCurrentUser } from './pages/utils/APIUtils';

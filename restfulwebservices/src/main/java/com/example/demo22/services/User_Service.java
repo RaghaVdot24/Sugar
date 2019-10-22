@@ -21,6 +21,7 @@ import com.example.demo22.proxysetup.ProxyDetails;
 import com.example.demo22.proxysetup.ProxyList;
 import com.example.demo22.repositories.Amazon_Repo;
 import com.example.demo22.repositories.Flipkart_Repo;
+import com.example.demo22.repositories.Product_Repo;
 import com.example.demo22.repositories.ScrapeList_Repo;
 import com.example.demo22.repositories.User_Repo;
 
@@ -38,6 +39,9 @@ public class User_Service {
 
 	@Autowired
 	private Flipkart_Repo flipkartrepo;
+
+	@Autowired
+	private Product_Repo productrepo;
 
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -60,21 +64,28 @@ public class User_Service {
 			System.setProperty("http.proxyHost",pd.getHost());
 			System.setProperty("http.proxyPort", pd.getPort());
 			Document productPage = Jsoup.connect(url)
+										//.proxy(pd.getHost(),Integer.valueOf(pd.getPort()))
 										.userAgent(pd.getUserAgent())
 										.get();
-			System.out.println(productPage);
+			//System.out.println(productPage);
+			// Document dummy = Jsoup.connect("https://www.whoishostingthis.com/tools/user-agent/")
+			// 						.userAgent(pd.getUserAgent())
+			// 						.proxy(pd.getHost(), Integer.valueOf(pd.getPort()))
+			// 						.timeout(1000*60)
+			// 						.get();
+			// System.out.println(dummy.getElementsByClass("info-box user-agent").text());
+			// System.out.println(dummy.getElementsByClass("info-box ip").text());
 			if(url.contains("amazon"))
 			{
-			String title = "";//productPage.getElementById("productTitle").text();
-			System.out.println(productPage.getElementById("productTitle"));
+			String title = productPage.getElementById("productTitle").text();
 			String brand = productPage.getElementById("bylineInfo_feature_div").child(0).child(0).text();
 			float rating = Float.valueOf(productPage.getElementById("acrPopover").attr("title").split(" ",0)[0]);
 			int num_reviews =Integer.valueOf(productPage.getElementById("acrCustomerReviewText").text().split(" ",0)[0].replace(",", ""));
-			double orig_price = Double.valueOf(productPage.getElementById("price").child(0).child(0).child(0).child(1).child(0).text().replace("/^[0-9]/","").substring(1));
+			double orig_price = Double.valueOf(productPage.getElementById("price").child(0).child(0).child(0).child(1).child(0).text().replaceAll("/^[0-9]/","").substring(1).replace(",", ""));
 			System.out.println(orig_price);
-			double new_price = Double.valueOf(productPage.getElementById("price").child(0).child(0).child(1).child(1).child(0).text().replace("/^[0-9]/",""));
+			double new_price = Double.valueOf(productPage.getElementById("price").child(0).child(0).child(1).child(1).child(0).text().replaceAll("/^[0-9]/","").substring(1).replace(",", ""));
 			System.out.println(new_price);
-			String img_url = productPage.getElementById("ivLargeImage").child(0).attr("src");
+			String img_url = productPage.getElementById("landingImage").attr("src");
 			System.out.println(img_url);
 			String product_desc ="";
 			Element bulletsElement = productPage.getElementById("feature-bullets").child(0);
@@ -84,7 +95,7 @@ public class User_Service {
 			double product_discount = 100*(orig_price-new_price)/orig_price;
 
 			//insert into amazon table
-			ProductAmazon productAmazon=new ProductAmazon(title, product_desc, num_reviews, product_discount, rating, brand);
+			ProductAmazon productAmazon=new ProductAmazon(title, product_desc, num_reviews, product_discount, rating, orig_price, new_price, img_url, brand);
 			productAmazon.setScore();
 			amazonrepo.save(productAmazon);
 			}
@@ -100,14 +111,19 @@ public class User_Service {
 				brand = title.split(" ",0)[0];
 				System.out.println(brand);
 			}
-			float rating = Float.valueOf(productPage.getElementById("productRating_LSTSHOFCWU8YTFMYVRHTBDPRX_SHOFCWU8YTFMYVRH_").child(0).text());
+			float rating = Float.valueOf(productPage.getElementsByClass("_3ors59").first().child(0).child(0).child(0).text());
 			System.out.println(rating);
 			int num_reviews =Integer.valueOf(productPage.getElementsByClass("_38sUEc").text().split(" ",0)[0].replace(",",""));
 			System.out.println(num_reviews);
-			double orig_price = Double.valueOf(productPage.getElementsByClass("_3auQ3N _1POkHg").first().text().replaceAll("/[^0-9]/","").substring(1));
+			double orig_price = Double.valueOf(productPage.getElementsByClass("_3auQ3N _1POkHg").first().text().replaceAll("/[^0-9]/","").substring(1).replace(",", ""));
 			System.out.println(orig_price);
 			double new_price = Double.valueOf(productPage.getElementsByClass("_1uv9Cb").first().child(0).text().substring(1).replace(",",""));
-			String img_url = productPage.getElementsByClass("_3ZJShS _31bMyl").first().child(0).attr("src");
+			Element img = productPage.getElementsByClass("_1ov7-N").first().child(1);
+			String img_url = "";
+			if(img.child(0).tagName().equalsIgnoreCase("img"))
+				img_url = img.child(0).attr("src");
+			else
+				img_url = img.child(0).child(0).attr("src");
 			System.out.println(img_url);
 			String product_desc ="";
 			//Element bulletsElement = productPage.getElementById("feature-bullets").child(0);
@@ -115,9 +131,14 @@ public class User_Service {
 			//	product_desc+=e.text();
 			double product_discount = 100*(orig_price-new_price)/orig_price;
 
-			ProductFlipkart productFlipkart = new ProductFlipkart(title,product_desc, num_reviews, product_discount, rating, brand);
-			productFlipkart.setScore();
-			flipkartrepo.save(productFlipkart);
+			// ProductFlipkart productFlipkart = new ProductFlipkart(title,product_desc, num_reviews, product_discount, rating, brand);
+			// productFlipkart.setScore();
+			// productFlipkart.setImg_url(img_url);
+			// flipkartrepo.save(productFlipkart);
+
+			Product product = new Product(title, product_desc, num_reviews, product_discount, rating, orig_price, new_price, img_url, brand);
+			product.setScore();
+			productrepo.save(product);
 			}
 
 //		}

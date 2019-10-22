@@ -5,14 +5,14 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
 
 // core components
-import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
-import Footer from "components/Footer/Footer.jsx";
-import Sidebar from "components/Sidebar/Sidebar.jsx";
+//import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
+import Footer from "../../components/Footer/Footer.jsx";
+//import Sidebar from "components/Sidebar/Sidebar.jsx";
 // import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 
-import routes from "routes.js";
+import routes from "../../routes.js";
 import FirstPageSignIn from '../../ProjectPages/pages/SignInForm'
-import logo from "assets/img/react-logo.png";
+//import logo from "assets/img/react-logo.png";
 import {getCurrentUser} from '../../ProjectPages/pages/utils/APIUtils'
 import { ACCESS_TOKEN } from '../../ProjectPages/pages/constants/index.js';
 import Details from '../../ProjectPages/pages/Details.js';

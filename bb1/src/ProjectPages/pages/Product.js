@@ -14,21 +14,21 @@ export default class Product extends Component {
         product : this.props.product
     }
     render(){
-        const {product_id, price,product_name,score, img, inCart} = this.props.product;
+        const {product_id, new_price,product_name,score, img_url, inCart} = this.props.product;
         console.log(this.props.product.product_id);
         return(
             <ProductWrapper>
 
                     <div className="img-container p-5"> 
                         <Link to={{pathname:"/admin/details/"+product_id,state : {product:this.props.product}}}>
-                            <img src="../../img/product1.jpeg" alt="Product Image" className="card-img-top" ></img></Link> 
+                            <img src="${img_url}" alt="Product Image" className="card-img-top" ></img></Link> 
                                       
                     {/* Card FOOTER */}
                     <div className="card-footer d-flex justify-content-between">
                         <p className="align-self-center mb-0">{product_name}</p>
                         <h5 className="text-white">
                             <span className="mr-1">Rs</span>
-                            {price}
+                            {new_price}
                         </h5>
                     </div>
                     </div>

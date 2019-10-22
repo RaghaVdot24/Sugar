@@ -32,7 +32,7 @@ import {
   chartExample2,
   chartExample3,
   chartExample4
-} from "variables/charts.jsx";
+} from "../variables/charts.jsx";
 
 import Product from '../ProjectPages/pages/Product'
 import FormItem from "antd/lib/form/FormItem";

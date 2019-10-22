@@ -31,9 +31,9 @@ public class Product_Controller {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
 
-		Product p = new Product(name,desc,num_reviews,discount,rating,brand);
-		p.setImg_url("./img1");
-		productrepository.save(p);
+		// Product p = new Product(product_name, product_desc, num_reviews, product_discount, rating, orig_price, new_price, img_url, brand);
+		// p.setImg_url("./img1");
+		// productrepository.save(p);
 		return "Saved";
 	}
 	

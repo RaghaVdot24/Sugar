@@ -1,7 +1,7 @@
 
 import React , {Component} from 'react'
 import {storeProducts, detailProduct} from './Data';
-import axios from 'axios';
+//import axios from 'axios';
 
 // WE NEED TO MAKE THE PRODUCT COMPONENT ACCESIBLE TO ALL COMPONENTS: PRODUCT LIST, CART, DEALS OF THE DAY ..
 // HENCE WE WILL  USE CONTEXT API WHERE WE HAVE ONE SOURCE OF TRUTH BUT ACCESSIBLE TO ALL COMPONENTS

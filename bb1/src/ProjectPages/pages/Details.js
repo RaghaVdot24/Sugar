@@ -19,14 +19,14 @@ export default class Details extends Component {
 
                             <div className="row">
                                 <div className="col-10 mx-auto text-center text-slanted text-blue my-5">
-                                    <img src="../../../public/img/product1.png" className="img-fluid" alt="Product"></img>
+                                    <img src={this.state.product.img_url} className="img-fluid" alt="Product"></img>
                                 </div> 
 
                                 <div className="col-10 mx-auto col-md-6 my-3 text-capitalize">
                                     <h2>model: {this.state.product.product_name}</h2>
                                     <h4 className="text-title text-uppercase text-muted mt-3 mb-2">
                                         Made By: <span className="text-uppercase">
-                                        var brand</span>
+                                        {this.state.product.brand}</span>
                                     </h4>
                                     <h4 className="text-blue">
                                         <strong>
