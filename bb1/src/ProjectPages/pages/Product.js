@@ -21,7 +21,7 @@ export default class Product extends Component {
 
                     <div className="img-container p-5"> 
                         <Link to={{pathname:"/admin/details/"+product_id,state : {product:this.props.product}}}>
-                            <img src="${img_url}" alt="Product Image" className="card-img-top" ></img></Link> 
+                            <img src={img_url} alt="Product Image" className="card-img-top" ></img></Link> 
                                       
                     {/* Card FOOTER */}
                     <div className="card-footer d-flex justify-content-between">

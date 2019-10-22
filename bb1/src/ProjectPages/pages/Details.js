@@ -30,7 +30,7 @@ export default class Details extends Component {
                                     </h4>
                                     <h4 className="text-blue">
                                         <strong>
-                                            price:<span></span>     
+                                            price:<span>{this.state.product.new_price}</span>     
                                         </strong>
                                     </h4>
                                     <p className="text-capitalize font-weight-bold m-3 mb-0">

@@ -118,12 +118,9 @@ public class User_Service {
 			double orig_price = Double.valueOf(productPage.getElementsByClass("_3auQ3N _1POkHg").first().text().replaceAll("/[^0-9]/","").substring(1).replace(",", ""));
 			System.out.println(orig_price);
 			double new_price = Double.valueOf(productPage.getElementsByClass("_1uv9Cb").first().child(0).text().substring(1).replace(",",""));
-			Element img = productPage.getElementsByClass("_1ov7-N").first().child(1);
-			String img_url = "";
-			if(img.child(0).tagName().equalsIgnoreCase("img"))
-				img_url = img.child(0).attr("src");
-			else
-				img_url = img.child(0).child(0).attr("src");
+			String img_div = productPage.getElementsByClass("LzhdeS").first().child(0).child(0).child(0).attr("style");
+			String img_url = img_div.split(":", 2)[1].substring(3).replaceAll("[()]", "");
+			img_url = img_url.replace("/128/128", "/880/1056");
 			System.out.println(img_url);
 			String product_desc ="";
 			//Element bulletsElement = productPage.getElementById("feature-bullets").child(0);
